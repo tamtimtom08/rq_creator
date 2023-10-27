@@ -15,23 +15,24 @@ jobs:
         run: |
           echo "start"
 
+      # - name: Check for changes in ./tmp.txt
+      #   id: file_changes
+      #   run: |
+      #     if [[ -n $(git diff --name-only ${{ github.event.before }} ${{ github.sha }}) ]]; then
+      #       echo "::set-output name=changed::true"
+      #     fi
+      #   shell: bash
       - name: Checkout
         uses: actions/checkout@v3
         with:
           path: main
-      - name: Check for changes in ./tmp.txt
-        id: file_changes
-        run: |
-          if [[ -n $(git diff --name-only ${{ github.event.before }} ${{ github.sha }}) ]]; then
-            echo "::set-output name=changed::true"
-          fi
-        shell: bash
 
       - name: clone another repository
         id: clone_from_another
         uses: actions/checkout@v3
         with:
           repository: tamtimtom08/pr_createe.git
+          token: ${{ secrets.GH_PAT }} 
           path: another
 
 
