@@ -54,7 +54,7 @@ jobs:
           git remote -v
           gh pr status
           gh pr list
-          gh pr create --title "スキーマ更新" --body "base pr:" --head "tmp-action-2" --base main
+          gh pr create --title "スキーマ更新" --body "base pr:" --head "tmp-action-2" --base main --repo tamtimtom08/pr_createe
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
