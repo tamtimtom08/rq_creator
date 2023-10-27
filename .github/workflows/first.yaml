@@ -15,9 +15,10 @@ jobs:
         run: |
           echo "start"
 
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          path: main
       - name: Check for changes in ./tmp.txt
         id: file_changes
         run: |
