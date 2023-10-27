@@ -51,6 +51,8 @@ jobs:
           git add .
           git commit -m "Copy ./tmp.txt to another repository"
           git push -f origin tmp-action-2
+          git remote -v
+          gh pr create -base main -head tmp-action-2 -t "スキーマ更新" -b "base pr: " -R tamtimtom08/pr_createe -p pr_createe
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -58,6 +60,5 @@ jobs:
       - name: create PR
         run: |
           git remote -v
-          gh pr create -B tmp-action-2 -t スキーマ更新 -b "base pr: " -R tamtimtom08/pr_createe -p pr_createe
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
