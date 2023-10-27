@@ -56,6 +56,7 @@ jobs:
           gh pr list
           gh pr create --title "スキーマ更新" --body "base pr:" --head "tmp-action-2" --base main --repo tamtimtom08/pr_createe
         env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - uses: actions/checkout@v3
