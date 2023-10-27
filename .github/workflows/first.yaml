@@ -29,7 +29,7 @@ jobs:
       - name: clone another repository
         id: clone_from_another
         uses: actions/checkout@v3
-        run: |
+        with:
           repository: tamtimtom08/pr_createe.git
           path: another
 
