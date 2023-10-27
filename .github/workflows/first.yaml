@@ -59,6 +59,9 @@ jobs:
         run: |
           cd ./target
           which gh
-          gh pr create -B tmp-action-2 -t スキーマ更新 -b "base pr: "
+          git config --global user.email "actions@github.com"
+          git config --global user.name "GitHub Actions"
+          git branch
+          gh pr create -B tmp-action-2 -t スキーマ更新 -b "base pr: " -R tamtimtom08/pr_createe
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
