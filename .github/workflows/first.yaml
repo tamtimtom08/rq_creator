@@ -53,7 +53,8 @@ jobs:
           git push -f origin tmp-action-2
           git remote -v
           gh pr status
-          gh pr create --base main --head tmp-action-2 --title "スキーマ更新" --body "base pr:"
+          gh pr list
+          gh pr create --title "スキーマ更新" --body "base pr:" --head "tmp-action-2" --base main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
