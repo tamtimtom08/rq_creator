@@ -58,4 +58,7 @@ jobs:
         # if: ${{ steps.check_pr.outputs.count == 0 }}
         run: |
           cd ./target
+          which gh
           gh pr create -B tmp-action-2 -t スキーマ更新 -b "base pr: "
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
