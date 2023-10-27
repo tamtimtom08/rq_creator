@@ -27,7 +27,7 @@ jobs:
         shell: bash
 
       - name: Commit and push changes
-        if: steps.file_changes.outputs.changed == 'true'
+        # if: steps.file_changes.outputs.changed == 'true'
         run: |
           git clone https://.:${{ secrets.GITHUB_TOKEN }}@github.com/tamtimtom08/pr_createe.git target
           cp ./tmp.txt ./target/tmp.txt
