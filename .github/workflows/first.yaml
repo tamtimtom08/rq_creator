@@ -50,7 +50,7 @@ jobs:
           git checkout -b tmp-action-2
           git add .
           git commit -m "Copy ./tmp.txt to another repository"
-          git push origin tmp-action-2
+          git push -f origin tmp-action-2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
