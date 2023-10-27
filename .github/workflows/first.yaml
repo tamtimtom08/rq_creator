@@ -57,6 +57,7 @@ jobs:
       - uses: actions/checkout@v3
       - name: create PR
         run: |
+          git remote -v
           gh pr create -B tmp-action-2 -t スキーマ更新 -b "base pr: " -R tamtimtom08/pr_createe -p pr_createe
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
