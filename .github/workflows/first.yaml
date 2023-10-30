@@ -37,7 +37,7 @@ jobs:
           destination_repo: 'tamtimtom08/pr_createe'
           destination_folder: "api-schema"
           destination_branch: "main"
-          destination_branch_create: "feature/update-graphql-schema_2"
+          destination_branch_create: "feature/update-graphql-schema_3"
           # user_email: "github-actions[bot]@users.noreply.github.com"
           user_email: "miwa.shiro.kuro@gmail.com"
           # user_name: "github-actions[bot]"
