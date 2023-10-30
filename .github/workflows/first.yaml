@@ -51,7 +51,7 @@ jobs:
           gh pr create \
             --title "update GraphQL Schema file " \
             --body "${{ steps.setup_description.outputs.content }}" \
-            --repo micin-jp/chicken-web \
+            --repo tamtimtom08/pr_createe \
             --base main \
-            --head feature/update-graphql-schema \
+            --head feature/update-graphql-schema_3 \
             --reviewer "${{ github.event.head_commit.committer.username || github.triggering_actor }}"
