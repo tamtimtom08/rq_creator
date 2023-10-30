@@ -34,10 +34,10 @@ jobs:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
           source_file: 'main.cpp'
-          destination_repo: 'tamtimtom08/pr_createe_2'
+          destination_repo: 'tamtimtom08/pr_createe'
           destination_folder: "api-schema"
           destination_branch: "main"
-          destination_branch_create: "feature/update-graphql-schema"
+          destination_branch_create: "feature/update-graphql-schema_2"
           # user_email: "github-actions[bot]@users.noreply.github.com"
           user_email: "miwa.shiro.kuro@gmail.com"
           # user_name: "github-actions[bot]"
