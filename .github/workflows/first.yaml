@@ -34,7 +34,7 @@ jobs:
           API_TOKEN_GIHUB: ${{ secrets.GH_PAT }}
         with:
           source_file: 'main.cpp'
-          destination_repo: 'tamofplease/pr_createe'
+          destination_repo: 'tamtimtom08/pr_createe'
           destination_folder: "chicken-api-schema"
           destination_branch: "main"
           destination_branch_create: "feature/update-graphql-schema"
