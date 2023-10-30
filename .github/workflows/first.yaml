@@ -37,7 +37,7 @@ jobs:
           destination_repo: 'tamtimtom08/pr_createe'
           destination_folder: "api-schema"
           destination_branch: "main"
-          destination_branch_create: "feature/update-graphql-schema_3"
+          destination_branch_create: "feature/update-graphql-schema"
           # user_email: "github-actions[bot]@users.noreply.github.com"
           user_email: "miwa.shiro.kuro@gmail.com"
           # user_name: "github-actions[bot]"
@@ -53,5 +53,5 @@ jobs:
             --body "${{ steps.setup_description.outputs.content }}" \
             --repo tamtimtom08/pr_createe \
             --base main \
-            --head feature/update-graphql-schema_3 \
+            --head feature/update-graphql-schema \
             --reviewer "${{ github.event.head_commit.committer.username || github.triggering_actor }}"
