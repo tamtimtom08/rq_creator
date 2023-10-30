@@ -33,7 +33,7 @@ jobs:
         env:
           API_TOKEN_GIHUB: ${{ secrets.GITHUB_TOKEN }}
         with:
-          source_file: ''
+          source_file: 'main.cpp'
           destination_repo: 'tamofplease/pr_createe'
           destination_folder: "chicken-api-schema"
           destination_branch: "main"
@@ -41,7 +41,7 @@ jobs:
           user_email: "github-actions[bot]@users.noreply.github.com"
           user_name: "github-actions[bot]"
           commit_message: ${{ steps.setup_description.outputs.content }}
-          use_rsync: "true"
+          # use_rsync: "true"
 
       # - name: Commit and push changes
       #   # if: steps.file_changes.outputs.changed == 'true'
