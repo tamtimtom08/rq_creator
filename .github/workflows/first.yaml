@@ -40,6 +40,7 @@ jobs:
           destination_branch_create: "feature/update-graphql-schema"
           # user_email: "github-actions[bot]@users.noreply.github.com"
           user_email: "miwa.shiro.kuro@gmail.com"
+          # user_name: "github-actions[bot]"
           user_name: "tamtimtom08"
           commit_message: ${{ steps.setup_description.outputs.content }}
           # use_rsync: "true"
