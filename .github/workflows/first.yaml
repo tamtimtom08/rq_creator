@@ -29,7 +29,7 @@ jobs:
           echo "{name}={content}" >> $GITHUB_OUTPUT
 
       - name: Copy files
-        uses: dmnemec/copy_file_to_another_repo_action@v1.1.1
+        uses: dmnemec/copy_file_to_another_repo_action@latest
         env:
           API_TOKEN_GIHUB: ${{ secrets.GH_PAT }}
         with:
