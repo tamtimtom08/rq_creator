@@ -11,57 +11,61 @@ jobs:
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - name: test start
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Setup commit description
+        env:
+          RUN_URL: "${{ github.event.repository.html_url }}/actions/runs/${{ github.run_id }}"
+          HEAD_COMMIT_URL: "${{ github.event.repository.html_url }}/commit/${{ github.event.after || github.sha }}"
+        id: setup_description
         run: |
-          echo "start"
+          DESCRIPTION=$(cat << EOF
+          update Schema file 🚀
 
-      # - name: Check for changes in ./tmp.txt
-      #   id: file_changes
+          created from ${{ env.RUN_URL }}
+          latest commit: ${{ env.HEAD_COMMIT_URL }}
+          EOF)
+          DESCRIPTION="${DESCRIPTION//$'\n'/'%0A'}"
+          echo "{name}={content}" >> $GITHUB_OUTPUT
+
+      - name: Copy files
+        uses: dmnemec/copy_file_to_another_repo_action@v1.1.1
+        env:
+          API_TOKEN_GIHUB: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          source_file: ''
+          destination_repo: 'tamofplease/pr_createe'
+          destination_folder: "chicken-api-schema"
+          destination_branch: "main"
+          destination_branch_create: "feature/update-graphql-schema"
+          user_email: "github-actions[bot]@users.noreply.github.com"
+          user_name: "github-actions[bot]"
+          commit_message: ${{ steps.setup_description.outputs.content }}
+          use_rsync: "true"
+
+      # - name: Commit and push changes
+      #   # if: steps.file_changes.outputs.changed == 'true'
       #   run: |
-      #     if [[ -n $(git diff --name-only ${{ github.event.before }} ${{ github.sha }}) ]]; then
-      #       echo "::set-output name=changed::true"
-      #     fi
-      #   shell: bash
-      - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          path: main
+      #     cp ./main/tmp.txt ./target/tmp.txt
+      #     cd target
+      #     git config --global user.email "actions@github.com"
+      #     git config --global user.name "GitHub Actions"
+      #     git branch
+      #     git checkout -b tmp-action-2
+      #     git add .
+      #     git commit -m "Copy ./tmp.txt to another repository"
+      #     git push -f origin tmp-action-2
+      #     git remote -v
+      #     gh pr status
+      #     gh pr list
+      #     gh pr create --title "スキーマ更新" --body "base pr:" --head "tmp-action-2" --base main --repo tamtimtom08/pr_createe
+      #   env:
+      #     GH_TOKEN: ${{ secrets.GH_PAT }}
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: clone another repository
-        id: clone_from_another
-        uses: actions/checkout@v3
-        with:
-          repository: tamtimtom08/pr_createe
-          token: ${{ secrets.GH_PAT }}
-          path: ./target
-      - name: testing
-        run: |
-          ls
-
-
-      - name: Commit and push changes
-        # if: steps.file_changes.outputs.changed == 'true'
-        run: |
-          cp ./main/tmp.txt ./target/tmp.txt
-          cd target
-          git config --global user.email "actions@github.com"
-          git config --global user.name "GitHub Actions"
-          git branch
-          git checkout -b tmp-action-2
-          git add .
-          git commit -m "Copy ./tmp.txt to another repository"
-          git push -f origin tmp-action-2
-          git remote -v
-          gh pr status
-          gh pr list
-          gh pr create --title "スキーマ更新" --body "base pr:" --head "tmp-action-2" --base main --repo tamtimtom08/pr_createe
-        env:
-          GH_TOKEN: ${{ secrets.GH_PAT }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - uses: actions/checkout@v3
-      - name: create PR
-        run: |
-          git remote -v
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # - uses: actions/checkout@v3
+      # - name: create PR
+      #   run: |
+      #     git remote -v
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
