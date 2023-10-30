@@ -34,7 +34,7 @@ jobs:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
           source_file: 'main.cpp'
-          destination_repo: 'tamtimtom08/pr_createe'
+          destination_repo: 'tamtimtom08/pr_createe_2'
           destination_folder: "api-schema"
           destination_branch: "main"
           destination_branch_create: "feature/update-graphql-schema"
@@ -44,30 +44,14 @@ jobs:
           user_name: "tamtimtom08"
           commit_message: ${{ steps.setup_description.outputs.content }}
           use_rsync: "true"
-
-      # - name: Commit and push changes
-      #   # if: steps.file_changes.outputs.changed == 'true'
-      #   run: |
-      #     cp ./main/tmp.txt ./target/tmp.txt
-      #     cd target
-      #     git config --global user.email "actions@github.com"
-      #     git config --global user.name "GitHub Actions"
-      #     git branch
-      #     git checkout -b tmp-action-2
-      #     git add .
-      #     git commit -m "Copy ./tmp.txt to another repository"
-      #     git push -f origin tmp-action-2
-      #     git remote -v
-      #     gh pr status
-      #     gh pr list
-      #     gh pr create --title "スキーマ更新" --body "base pr:" --head "tmp-action-2" --base main --repo tamtimtom08/pr_createe
-      #   env:
-      #     GH_TOKEN: ${{ secrets.GH_PAT }}
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      # - uses: actions/checkout@v3
-      # - name: create PR
-      #   run: |
-      #     git remote -v
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: create Pull Request to another-repo
+        run: |
+          gh pr create \
+            --title "update GraphQL Schema file " \
+            --body "${{ steps.setup_description.outputs.content }}" \
+            --repo micin-jp/chicken-web \
+            --base main \
+            --head feature/update-graphql-schema \
+            --reviewer "${{ github.event.head_commit.committer.username || github.triggering_actor }}"
+        env:
+          GH_TOKEN: ${{ secrets.ORG_GITHUB_TOKEN }}
