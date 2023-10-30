@@ -45,6 +45,8 @@ jobs:
           commit_message: ${{ steps.setup_description.outputs.content }}
           use_rsync: "true"
       - name: create Pull Request to another-repo
+        env:
+          GH_TOKEN: ${{ secrets.API_TOKEN_GITHUB }}
         run: |
           gh pr create \
             --title "update GraphQL Schema file " \
@@ -53,5 +55,3 @@ jobs:
             --base main \
             --head feature/update-graphql-schema \
             --reviewer "${{ github.event.head_commit.committer.username || github.triggering_actor }}"
-        env:
-          GH_TOKEN: ${{ secrets.ORG_GITHUB_TOKEN }}
