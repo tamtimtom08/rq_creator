@@ -31,7 +31,7 @@ jobs:
       - name: Copy files
         uses: dmnemec/copy_file_to_another_repo_action@main
         env:
-          API_TOKEN_GIHUB: ${{ secrets.GH_PAT }}
+          API_TOKEN_GIHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
           source_file: 'main.cpp'
           destination_repo: 'tamtimtom08/pr_createe'
